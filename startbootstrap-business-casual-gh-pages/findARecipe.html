@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Business Casual - Start Bootstrap Theme</title>
+  <title>Find a recipe</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,12 +57,29 @@
     </div>
   </nav>
 
-  <section class="page-section clearfix">
+  <section class="page-section cta">
     <div class="container">
       <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <div class="cta-inner text-center bg-faded p-5 rounded">
-            <h1 class="section-heading mb-4">Page coming soon</h1>
+        <div class="col-xl-12 mx-auto">
+          <div class="cta-inner rounded">
+            <form>
+                <div class="flex-grow-1">
+                  <label for="name">Search</label>
+                  <input type="text" class="form-control" id="search" placeholder="Enter recipe name">
+                  <br><button id="searchBtn" type="search" class="btn btn-primary btn-sm">Search</button>
+                </div>
+              </feorm>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 mx-auto">
+          <div class="cta-inner rounded">
+            <form>
+                <div class="flex-grow-1">
+                  <h3 class="section-heading mb-4">Search results</h3>
+                </div>
+              </feorm>
           </div>
         </div>
       </div>

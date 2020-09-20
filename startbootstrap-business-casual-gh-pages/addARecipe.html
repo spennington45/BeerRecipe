@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Business Casual - Start Bootstrap Theme</title>
+  <title>Add a Recipe</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -60,19 +60,18 @@
   <section class="page-section cta">
     <div class="container">
       <div class="row">
-        <div class="col-xl-9 mx-auto">
+        <div class="col-xl-12 mx-auto">
           <div class="cta-inner rounded">
             <form>
-              <label>
-                <div>
-                  <label for="name">Name</label>
+                <div class="flex-grow-1">
+                  <label for="name">Title</label>
                   <input type="text" class="form-control" id="name" placeholder="Enter recipe name">
                 </div>
                 <div>
                   <label for="Ingredents">Ingredents</label>
                   <textarea class="form-control" id="ingredents" rows="5" placeholder="Ingredents"></textarea>
                 </div>
-                <div class="line-item">
+                <div class="d-flex-inline">
                   <label for="Volume">Volume</label>
                   <input type="text" class="form-control" id="Volume" placeholder="Enter volume">
                   <label for="Units">Units</label>
@@ -83,7 +82,7 @@
                 </div>
                 <div>
                   <label for="ABV">ABV/SG</label>
-                  <textarea class="form-control" id="ABV" rows="5" placeholder="ABC/SG"></textarea>
+                  <input type="text" class="form-control" id="ABV" placeholder="ABC/SG"></textarea>
                 </div>
                 <div>
                   <label for="Directions">Directions</label>
@@ -94,9 +93,9 @@
                   <input type="text" class="form-control" id="Author" placeholder="Author">
                 </div>
                 <div>
+                  <br>
                   <button id="btnSaveReview" type="submit" class="btn btn-primary btn-sm">Save Review</button>
                 </div>
-              </label>
               </feorm>
           </div>
         </div>
