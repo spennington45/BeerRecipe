@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store/index.js'
 import Home from "../views/Home.vue"
 import AddRecipe from "../views/AddRecipe.vue"
 import FindRecipe from "../views/FindRecipe.vue"
@@ -28,30 +29,30 @@ const router = new Router({
                 requiresAuth: false
             }
         },
-        {
-            path: "/login",
-            name: "login",
-            component: Login,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: "/logout",
-            name: "logout",
-            component: Logout,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: "/register",
-            name: "register",
-            component: Register,
-            meta: {
-                requiresAuth: false
-            }
-        },
+        // {
+        //     path: "/login",
+        //     name: "login",
+        //     component: Login,
+        //     meta: {
+        //         requiresAuth: false
+        //     }
+        // },
+        // {
+        //     path: "/logout",
+        //     name: "logout",
+        //     component: Logout,
+        //     meta: {
+        //         requiresAuth: false
+        //     }
+        // },
+        // {
+        //     path: "/register",
+        //     name: "register",
+        //     component: Register,
+        //     meta: {
+        //         requiresAuth: false
+        //     }
+        // },
         {
             path: "/findRecipe",
             name: "findRecipe",

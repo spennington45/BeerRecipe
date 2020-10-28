@@ -1,39 +1,74 @@
 <template>
-  <div>
+  <div id="app">
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3"
+        >A Free Beer Recipe Database</span
+      >
+      <span class="site-heading-lower">Beer Recipes</span>
+    </h1>
     <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4 navbar-fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Beer Recipes</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item active px-lg-4">
-            <router-link class="nav-link text-uppercase text-expanded" v-bind:to="{name: 'home'}">Home
-              <span class="sr-only">(current)</span>
-            </router-link>
-          </li>
-          <li class="nav-item px-lg-4">
-            <router-link class="nav-link text-uppercase text-expanded" v-bind:to="{name: 'findRecipe'}">Find a Recipes</router-link>
-          </li>
-          <li class="nav-item px-lg-4">
-            <router-link class="nav-link text-uppercase text-expanded" v-bind:to="{name: 'addRecipe'}">Add a Recipe</router-link>
-          </li>
-          <li class="nav-item px-lg-4">
-            <router-link class="nav-link text-uppercase text-expanded" v-bind:to="{name: 'forums'}">Forums</router-link>
-          </li>
-        </ul>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark py-lg-4 navbar-fixed-top"
+      id="mainNav"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none"
+          href="#"
+          >Beer Recipes</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-lg-4">
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'home' }"
+                >Home
+                <span class="sr-only">(current)</span>
+              </router-link>
+            </li>
+            <li class="nav-item px-lg-4">
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'findRecipe' }"
+                >Find a Recipes</router-link
+              >
+            </li>
+            <li class="nav-item px-lg-4">
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'addRecipe' }"
+                >Add a Recipe</router-link
+              >
+            </li>
+            <li class="nav-item px-lg-4">
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'forums' }"
+                >Forums</router-link
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <router-view>
-      <footer class="footer text-faded text-center py-5">
-    <div class="container">
-      <p class="m-0 small">Copyright &copy; Website TBD 2020</p>
-    </div>
-  </footer>
+    </nav>
+    <router-view />
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0 small">Copyright &copy; Website TBD 2020</p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -42,4 +77,310 @@ export default {};
 </script>
 
 <style>
+/*!
+ * Start Bootstrap - Business Casual v5.0.10 (https://startbootstrap.com/themes/business-casual)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+ */
+
+#app {
+  font-family: "Lora";
+  background-image: linear-gradient(
+      rgba(47, 23, 15, 0.5),
+      rgba(47, 23, 15, 0.5)
+    ),
+    url("/resources/Choosing-the-Best-Beer-Mugs-for-Your-Home-Bar.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway";
+}
+
+p {
+  line-height: 1.75;
+}
+
+.text-faded {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.site-heading {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  text-transform: uppercase;
+  line-height: 1;
+  font-family: "Raleway";
+}
+
+.site-heading .site-heading-upper {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.site-heading .site-heading-lower {
+  font-size: 5rem;
+  font-weight: 100;
+  line-height: 4rem;
+}
+
+.page-section {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.section-heading {
+  text-transform: uppercase;
+}
+
+.section-heading .section-heading-upper {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.section-heading .section-heading-lower {
+  display: block;
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+.bg-faded {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+#mainNav {
+  background-color: rgba(17, 9, 3, 0.9);
+  font-family: "Raleway";
+}
+
+#mainNav .navbar-brand {
+  color: #e6a756;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+}
+
+#mainNav .navbar-nav .nav-item.active .nav-link {
+  color: #e6a756;
+}
+
+@media (min-width: 992px) {
+  #mainNav .navbar-nav .nav-item .nav-link {
+    font-size: 0.9rem;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  #mainNav .navbar-nav .nav-item.active .nav-link:hover {
+    color: #e6a756;
+  }
+}
+
+.btn-xl {
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.intro {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .intro .intro-img {
+    width: 75%;
+    float: right;
+  }
+  .intro .intro-text {
+    left: 0;
+    width: 60%;
+    margin-top: 3rem;
+    position: absolute;
+  }
+  .intro .intro-text .intro-button {
+    width: 100%;
+    left: 0;
+    position: absolute;
+    bottom: -2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .intro .intro-text {
+    width: 45%;
+  }
+}
+
+.cta {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: rgba(230, 167, 86, 0.9);
+}
+
+.cta .cta-inner {
+  position: relative;
+  padding: 3rem;
+  margin: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.cta .cta-inner:before {
+  border-radius: 0.5rem;
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  bottom: -0.5rem;
+  left: -0.5rem;
+  right: -0.5rem;
+  border: 0.25rem solid rgba(255, 255, 255, 0.85);
+  z-index: -1;
+}
+
+@media (min-width: 992px) {
+  .about-heading .about-heading-img {
+    position: relative;
+    z-index: 0;
+  }
+  .about-heading .about-heading-content {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-item .product-item-title {
+    position: relative;
+    z-index: 1;
+    margin-bottom: -3rem;
+  }
+  .product-item .product-item-img {
+    position: relative;
+    z-index: 0;
+    max-width: 60vw;
+  }
+  .product-item .product-item-description {
+    position: relative;
+    z-index: 1;
+    margin-top: -3rem;
+    max-width: 50vw;
+  }
+}
+
+.list-hours {
+  font-size: 0.9rem;
+}
+
+.list-hours .list-hours-item {
+  border-bottom: 1px solid rgba(230, 167, 86, 0.5);
+  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.list-hours .list-hours-item.today {
+  font-weight: bold;
+  color: #e6a756;
+}
+
+@media (min-width: 992px) {
+  .list-hours {
+    width: 50%;
+    font-size: 1.1rem;
+  }
+}
+
+.address strong {
+  font-size: 1.2rem;
+}
+
+.footer {
+  background-color: rgba(17, 9, 3, 0.9);
+}
+
+.text-primary {
+  color: #e6a756 !important;
+}
+
+.bg-primary {
+  background-color: #e6a756 !important;
+}
+
+.btn {
+  box-shadow: 0px 3px 3px 0px rgba(33, 37, 41, 0.1);
+}
+
+.btn-primary {
+  background-color: #e6a756;
+  border-color: #e6a756;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #df902a;
+  border-color: #df902a;
+}
+
+.font-weight-light {
+  font-weight: 100 !important;
+}
+/* adding new css
+Variables
+Restated Bootstrap Variables */
+:root {
+  --white: #fff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #868e96;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --black: #000;
+
+  --primary: #e6a756;
+  --secondary: #2f170f;
+}
+
+.bg-primary {
+  background-color: #e6a756 !important;
+}
+
+.btn {
+  box-shadow: 0px 3px 3px 0px fade-out(#212529, 0.9) !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #e6a756 !important;
+  border-color: #e6a756 !important;
+}
+.btn-primary:active {
+  background-color: darken(#e6a756, 10%) !important;
+  border-color: darken(#e6a756, 10%) !important;
+}
+
+.font-weight-light {
+  font-weight: 100 !important;
+}
 </style>
