@@ -32,7 +32,20 @@
 </template>
 
 <script>
-export default {};
+import recipeService from "../services/RecipeService.js"
+
+export default {
+  data() {
+    return {
+      recipes: [],
+    }
+  },
+  created() {
+        recipeService.getAllRecipe().then((response) => {
+      this.recipes = response.data;
+    });
+  }
+};
 </script>
 
 <style>

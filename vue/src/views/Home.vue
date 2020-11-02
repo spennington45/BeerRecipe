@@ -5,7 +5,7 @@
         <div class="intro">
           <img
             class="intro-img img-fluid mb-3 mb-lg-0 rounded"
-            src="/resources/gallon-brewing.jpg"
+            src="../resources/gallon-brewing.jpg"
             alt=""
           />
           <div class="intro-text left-0 text-center bg-faded p-5 rounded">
