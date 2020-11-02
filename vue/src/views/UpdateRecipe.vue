@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import BeerForm from "../components/BeerForm";
+import BeerForm from "../components/BeerForm.vue"
 export default {
-  components: {
-    BeerForm,
-  },
+    components: {
+        BeerForm,
+    }
 };
 </script>
 

@@ -7,4 +7,16 @@ export default {
     getAllRecipe() {
         return http.get('/recipe');
     },
+    getRecipeById(id) {
+        return http.get(`/recipe/${id}`)
+    },
+    addRecipe(recipe) {
+        return http.post("/save", recipe)
+    },
+    updateRecipe(recipe) {
+        return http.put(`/update/${recipe.id}`, recipe)
+    },
+    deleteRecipe(id) {
+        return http.delete(`/delete/${id}`)
+    }
 }

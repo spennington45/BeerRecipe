@@ -5,6 +5,9 @@ import Home from "../views/Home.vue"
 import AddRecipe from "../views/AddRecipe.vue"
 import FindRecipe from "../views/FindRecipe.vue"
 import Forums from "../views/Forums.vue"
+import RecipeDetails from "../views/RecipeDetails.vue"
+import UpdateRecipe from "../views/UpdateRecipe.vue"
+
 
 Vue.use(Router)
 
@@ -73,6 +76,22 @@ const router = new Router({
             path: "/forums",
             name: "forums",
             component: Forums,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/recipe/:id",
+            name: "recipeDetails",
+            component: RecipeDetails,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/updateRecipe/:id",
+            name: "updateRecipe",
+            component: UpdateRecipe,
             meta: {
                 requiresAuth: false
             }

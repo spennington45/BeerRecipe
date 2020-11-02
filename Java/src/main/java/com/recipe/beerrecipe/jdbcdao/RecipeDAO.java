@@ -1,4 +1,4 @@
-package com.recipe.beerrecipe.jdcpdao;
+package com.recipe.beerrecipe.jdbcdao;
 
 import java.util.List;
 
