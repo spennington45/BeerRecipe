@@ -3,8 +3,6 @@ package com.recipe.beerrecipe.jdbcdao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -22,7 +20,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 	@Override
 	public List<Recipe> getAll() {
 		List <Recipe> list = new ArrayList<> ();
-		String sql = "SELECT * FROM beerrecipe";
+		String sql = "SELECT * FROM beerRecipe";
 		SqlRowSet results = template.queryForRowSet(sql);
 		while (results.next()) {
 			Recipe recipe = mapRowToRecipe(results);
@@ -46,16 +44,16 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 	@Override
 	public Recipe update(long id, Recipe recipe) {
-		String sql = "UPDATE beerrecipe SET name = ?, ingredients = ?, volume = ?, abv = ?, directions = ?, author = ? WHERE id = ?"; 
-		template.update(sql, recipe.getName(), recipe.getIngredients(), recipe.getVolume(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor(), id);
+		String sql = "UPDATE beerrecipe SET name = ?, ingredients = ?, units = ?, volume = ?, abv = ?, directions = ?, author = ? WHERE id = ?"; 
+		template.update(sql, recipe.getName(), recipe.getIngredients(), recipe.getUnits(), recipe.getVolume(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor(), id);
 		Recipe output = getRecipe(id);
 		return output;
 	}
 
 	@Override
 	public String save(Recipe recipe) {
-		String sql = "INSERT INTO beerrecipe (name, ingredients, volume, abv, directions, author) VALUES (?, ?, ?, ?, ?, ?);";
-		template.update(sql, recipe.getName(), recipe.getIngredients(), recipe.getVolume(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor());
+		String sql = "INSERT INTO beerrecipe (name, ingredients, volume, units, abv, directions, author, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		template.update(sql, recipe.getName(), recipe.getIngredients(), recipe.getVolume(), recipe.getUnits(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor(), recipe.getUserId());
 		return "Recipe saved";
 	}
 
@@ -75,6 +73,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		recipe.setAbv(sql.getDouble("abv"));
 		recipe.setDirections(sql.getString("directions"));
 		recipe.setAuthor(sql.getString("author"));
+		recipe.setUnits(sql.getString("units"));
 		return recipe;
 	}
 

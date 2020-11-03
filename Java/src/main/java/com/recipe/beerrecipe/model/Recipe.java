@@ -12,7 +12,21 @@ public class Recipe {
 	private double abv;
 	private String directions;
 	private String author;
+	private String units;
+	private int userId;
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getUnits() {
+		return units;
+	}
+	public void setUnits(String units) {
+		this.units = units;
+	}
 	public String getAuthor() {
 		return author;
 	}

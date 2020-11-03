@@ -39,8 +39,7 @@ public class MainController {
 	
 	@RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
-		Recipe output = dao.update(id, recipe);
-		return output;
+		return dao.update(id, recipe);
 	}
 	
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)

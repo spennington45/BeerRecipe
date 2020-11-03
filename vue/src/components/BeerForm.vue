@@ -2,13 +2,13 @@
   <div>
     <form>
       <div class="flex-grow-1">
-        <label for="name">Title</label>
+        <label for="name">Name</label>
         <input
           type="text"
           class="form-control"
           id="name"
           placeholder="Enter recipe name"
-          v-model="this.recipe.name"
+          v-model="recipe.name"
         />
       </div>
       <div>
@@ -18,7 +18,7 @@
           id="ingredients"
           rows="5"
           placeholder="Ingredients"
-          v-model="this.recipe.ingredients"
+          v-model="recipe.ingredients"
         ></textarea>
       </div>
       <div class="d-flex-inline">
@@ -28,10 +28,10 @@
           class="form-control"
           id="Volume"
           placeholder="Enter volume"
-          v-model="this.recipe.volume"
+          v-model="recipe.volume"
         />
         <label for="Units">Units</label>
-        <select class="form-control" id="Units" v-model="this.recipe.units">
+        <select class="form-control" id="Units" v-model="recipe.units">
           <option>L</option>
           <option>Gal</option>
         </select>
@@ -43,7 +43,7 @@
           class="form-control"
           id="ABV"
           placeholder="ABV/SG"
-          v-model="this.recipe.abv"
+          v-model="recipe.abv"
         />
       </div>
       <div>
@@ -53,7 +53,7 @@
           id="Directions"
           rows="10"
           placeholder="Directions"
-          v-model="this.recipe.directions"
+          v-model="recipe.directions"
         ></textarea>
       </div>
       <div>
@@ -63,7 +63,7 @@
           class="form-control"
           id="Author"
           placeholder="Author"
-          v-model="this.recipe.author"
+          v-model="recipe.author"
         />
       </div>
       <div>
@@ -97,7 +97,7 @@ import recipeService from "../services/RecipeService.js";
 export default {
   data() {
     return {
-      recipe: {},
+      recipe: {userId: 1},
     };
   },
   methods: {
@@ -119,7 +119,7 @@ export default {
     },
   },
   created() {
-    if (this.$route.params.id != null) {
+    if (this.$route.name == "updateRecipe") {
       recipeService.getRecipeById(this.$route.params.id).then((response) => {
         this.recipe = response.data;
         console.log(this.recipe)
