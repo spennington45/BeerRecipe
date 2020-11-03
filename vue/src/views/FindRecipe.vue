@@ -15,14 +15,8 @@
                     class="form-control"
                     id="search"
                     placeholder="Enter recipe name"
+                    v-model="filterText"
                   />
-                  <br /><button
-                    id="searchBtn"
-                    type="search"
-                    class="btn btn-primary btn-sm"
-                  >
-                    Filter By Name
-                  </button>
                 </div>
               </form>
             </div>
@@ -34,7 +28,7 @@
               <div class="flex-grow-1">
                 <h3 class="section-heading mb-4">Beer Recipes</h3>
               </div>
-              <div v-for="recipe in recipes" v-bind:key="recipe.id">
+              <div v-for="recipe in filteredList" v-bind:key="recipe.id">
                 <router-link
                   class="nav-link"
                   v-bind:to="{
@@ -60,9 +54,18 @@ export default {
   data() {
     return {
       recipes: [],
+      filterText: "",
     };
   },
-  methods: {},
+  computed: {
+    filteredList() {
+      return this.recipes.filter((recipe) => {
+        return recipe.name.toLowerCase().includes(this.filterText.toLowerCase());
+      });
+    }
+  },
+  methods: {
+  },
   created() {
     recipeService.getAllRecipe().then((response) => {
       this.recipes = response.data;

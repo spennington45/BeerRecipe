@@ -17,7 +17,7 @@
                     {{this.recipe.directions}}
                 </p>
                 <button v-on:click="updateRecipe" class="btn btn-primary btn-sm">Update Recipe</button>
-                <button v-on:click="deleteRecipe" class="btn btn-danger btn-sm">Delete Recipe</button>
+                <button v-on:click="deleteRecipe" id="delete-btn" class="btn btn-danger btn-sm">Delete Recipe</button>
               </div>
             </div>
           </div>
@@ -41,7 +41,6 @@ export default {
     },
     deleteRecipe() {
       recipeServices.deleteRecipe(this.$route.params.id).then(() => {
-        console.log("Recipe Deleted");
         this.$router.push({name: "findRecipe"});
       })
     }
@@ -54,5 +53,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#delete-btn {
+  margin-left: 10px;
+}
 </style>

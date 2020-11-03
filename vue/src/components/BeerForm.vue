@@ -104,7 +104,6 @@ export default {
     addRecipe() {
       recipeService.addRecipe(this.recipe).then((response) => {
         if (response.status == 200) {
-          console.log(this.recipe.name + " added");
           this.$router.push({name: "findRecipe"})
         }
       });
@@ -112,7 +111,6 @@ export default {
     updateRecipe() {
       recipeService.updateRecipe(this.recipe).then((response) => {
         if (response.status == 200) {
-          console.log(this.recipe.name + " updated");
           this.$router.push({name: "recipeDetails", params: {id: this.$route.params.id}})
         }
       });
@@ -122,7 +120,6 @@ export default {
     if (this.$route.name == "updateRecipe") {
       recipeService.getRecipeById(this.$route.params.id).then((response) => {
         this.recipe = response.data;
-        console.log(this.recipe)
       });
     }
   },
