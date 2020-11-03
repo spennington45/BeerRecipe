@@ -8,17 +8,17 @@
           class="form-control"
           id="name"
           placeholder="Enter recipe name"
-          v-bind="recipe.name"
+          v-model="this.recipe.name"
         />
       </div>
       <div>
-        <label for="Ingredents">Ingredents</label>
+        <label for="Ingredients">Ingredients</label>
         <textarea
           class="form-control"
-          id="ingredents"
+          id="ingredients"
           rows="5"
-          placeholder="Ingredents"
-          v-bind="recipe.ingredents"
+          placeholder="Ingredients"
+          v-model="this.recipe.ingredients"
         ></textarea>
       </div>
       <div class="d-flex-inline">
@@ -28,10 +28,10 @@
           class="form-control"
           id="Volume"
           placeholder="Enter volume"
-          v-bind="recipe.volume"
+          v-model="this.recipe.volume"
         />
         <label for="Units">Units</label>
-        <select class="form-control" id="Units" v-bind="recipe.units">
+        <select class="form-control" id="Units" v-model="this.recipe.units">
           <option>L</option>
           <option>Gal</option>
         </select>
@@ -43,7 +43,7 @@
           class="form-control"
           id="ABV"
           placeholder="ABV/SG"
-          v-bind="recipe.abv"
+          v-model="this.recipe.abv"
         />
       </div>
       <div>
@@ -53,7 +53,7 @@
           id="Directions"
           rows="10"
           placeholder="Directions"
-          v-bind="recipe.directions"
+          v-model="this.recipe.directions"
         ></textarea>
       </div>
       <div>
@@ -63,7 +63,7 @@
           class="form-control"
           id="Author"
           placeholder="Author"
-          v-bind="recipe.author"
+          v-model="this.recipe.author"
         />
       </div>
       <div>
@@ -73,7 +73,7 @@
           id="addBeer"
           type="submit"
           class="btn btn-primary btn-sm"
-          v-on="addRecipe"
+          v-on:click.prevent="addRecipe"
         >
           Add Beer
         </button>
@@ -82,7 +82,7 @@
           id="updateBeer"
           type="submin"
           class="btn btn-primary btn-sm"
-          v-on="updateRecipe"
+          v-on:click.prevent="updateRecipe"
         >
           Update Beer
         </button>
@@ -104,14 +104,16 @@ export default {
     addRecipe() {
       recipeService.addRecipe(this.recipe).then((response) => {
         if (response.status == 200) {
-        //   console.log(this.recipe.name + " added");
+          console.log(this.recipe.name + " added");
+          this.$router.push({name: "findRecipe"})
         }
       });
     },
     updateRecipe() {
       recipeService.updateRecipe(this.recipe).then((response) => {
         if (response.status == 200) {
-        //   console.log(this.recipe.name + " updated");
+          console.log(this.recipe.name + " updated");
+          this.$router.push({name: "recipeDetails", params: {id: this.$route.params.id}})
         }
       });
     },
@@ -120,6 +122,7 @@ export default {
     if (this.$route.params.id != null) {
       recipeService.getRecipeById(this.$route.params.id).then((response) => {
         this.recipe = response.data;
+        console.log(this.recipe)
       });
     }
   },

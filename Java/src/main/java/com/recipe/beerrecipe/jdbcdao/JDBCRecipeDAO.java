@@ -47,7 +47,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 	@Override
 	public Recipe update(long id, Recipe recipe) {
 		String sql = "UPDATE beerrecipe SET name = ?, ingredients = ?, volume = ?, abv = ?, directions = ?, author = ? WHERE id = ?"; 
-		template.update(sql, recipe.getName(), recipe.getVolume(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor(), id);
+		template.update(sql, recipe.getName(), recipe.getIngredients(), recipe.getVolume(), recipe.getAbv(), recipe.getDirections(), recipe.getAuthor(), id);
 		Recipe output = getRecipe(id);
 		return output;
 	}

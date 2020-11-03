@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     updateRecipe() {
-      this.$router.push({name: "updateRecipe", params: { id: this.$route.id }});
+      this.$router.push({name: "updateRecipe", params: { id: this.$route.params.id }});
     }
   },
   created() {
