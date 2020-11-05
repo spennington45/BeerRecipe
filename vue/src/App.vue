@@ -70,6 +70,7 @@
                 class="nav-link text-uppercase text-expanded"
                 v-bind:to="{ name: 'login' }"
                 v-else
+                v-on:click.native="logOut"
                 >Sign out</router-link
               >
             </li>
@@ -89,6 +90,11 @@
 <script>
 export default {
   methods: {
+    logOut() {
+      this.$store.state.token = "";
+      this.$store.state.user = "";
+      this.$store.state.logIn = false;
+    }
   }
 };
 </script>
