@@ -37,6 +37,7 @@
                   }"
                 >
                   {{ recipe.name }}
+                <span class="gap-left">- {{recipe.author}}</span>
                 </router-link>
               </div>
             </div>
@@ -74,5 +75,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.gap-left {
+  margin-left: 10px;
+}
 </style>
