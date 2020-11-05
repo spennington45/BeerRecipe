@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 //model for user
 public class User {
 
 	private Long id;
 	private String username;
+	private String firstName;
+	private String lastName;
+
 	@JsonIgnore
 	private String password;
 	@JsonIgnore
@@ -24,6 +28,22 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.activated = true;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Long getId() {

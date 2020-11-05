@@ -68,21 +68,23 @@ public class UserSqlDAO implements UserDAO {
 
 	// add new user to database
 	@Override
-	public boolean create(String username, String password, String role) {
+	public boolean create(String username, String password, String role, String firstName, String lastName) {
 		boolean userCreated = false;
 
 		// create user
-		String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
+		String insertUser = "insert into users (username,password_hash,role, first_name, last_name) values(?,?,?,?,?)";
 		String password_hash = new BCryptPasswordEncoder().encode(password);
 		String ssRole = "ROLE_" + role.toUpperCase();
 
 		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-		String id_column = "user_id";
+		String id_column = "id";
 		userCreated = jdbcTemplate.update(con -> {
 			PreparedStatement ps = con.prepareStatement(insertUser, new String[] { id_column });
 			ps.setString(1, username);
 			ps.setString(2, password_hash);
 			ps.setString(3, ssRole);
+			ps.setString(4, firstName);
+			ps.setString(5, lastName);
 			return ps;
 		}, keyHolder) == 1;
 		int newUserId = (int) keyHolder.getKeys().get(id_column);
@@ -92,20 +94,16 @@ public class UserSqlDAO implements UserDAO {
 	// deletes user by user id
 	@Override
 	public void deleteUserById(long id) {
-		jdbcTemplate.update("DELETE FROM reply_review WHERE user_id = ?", id);
-		jdbcTemplate.update("DELETE FROM review WHERE userid = ?", id);
-		jdbcTemplate.update("DELETE FROM pending_brewery_request WHERE user_id = ?", id);
-		jdbcTemplate.update("UPDATE breweries SET brewer_id = null WHERE brewer_id = ?;", id);
-		jdbcTemplate.update("DELETE FROM brewer_request WHERE user_id = ?", id);
-		jdbcTemplate.update("DELETE FROM brewery_favorites WHERE user_id = ?", id);
-		jdbcTemplate.update("DELETE FROM users WHERE user_id = ?", id);
+		jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
 	}
 
 	// maps data to object by using database column name in table users
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();
-		user.setId(rs.getLong("user_id"));
+		user.setId(rs.getLong("id"));
 		user.setUsername(rs.getString("username"));
+		user.setFirstName(rs.getNString("first_name"));
+		user.setLastName(rs.getNString("last_name"));
 		user.setPassword(rs.getString("password_hash"));
 		user.setAuthorities(rs.getString("role"));
 		user.setActivated(true);

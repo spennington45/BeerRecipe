@@ -7,6 +7,9 @@ import FindRecipe from "../views/FindRecipe.vue"
 import Forums from "../views/Forums.vue"
 import RecipeDetails from "../views/RecipeDetails.vue"
 import UpdateRecipe from "../views/UpdateRecipe.vue"
+import Login from "../views/Login.vue"
+import Logout from "../views/Logout.vue"
+import Register from "../views/Register.vue"
 
 
 Vue.use(Router)
@@ -32,30 +35,30 @@ const router = new Router({
                 requiresAuth: false
             }
         },
-        // {
-        //     path: "/login",
-        //     name: "login",
-        //     component: Login,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
-        // {
-        //     path: "/logout",
-        //     name: "logout",
-        //     component: Logout,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
-        // {
-        //     path: "/register",
-        //     name: "register",
-        //     component: Register,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
+        {
+            path: "/login",
+            name: "login",
+            component: Login,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/logout",
+            name: "logout",
+            component: Logout,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/register",
+            name: "register",
+            component: Register,
+            meta: {
+                requiresAuth: false
+            }
+        },
         {
             path: "/findRecipe",
             name: "findRecipe",

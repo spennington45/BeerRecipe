@@ -74,11 +74,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.nav-link {
-  color: rgba(17, 9, 3, 1);
-}
-.nav-link:hover {
-  color: #e6a756;
-}
+<style>
 </style>

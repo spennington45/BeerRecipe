@@ -59,6 +59,20 @@
                 >Forums</router-link
               >
             </li>
+            <li class="nav-item px-lg-4">
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'login' }"
+                v-if="!this.$store.state.logIn"
+                >Sign in</router-link
+              >
+              <router-link
+                class="nav-link text-uppercase text-expanded"
+                v-bind:to="{ name: 'login' }"
+                v-else
+                >Sign out</router-link
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -181,6 +195,13 @@ p {
 }
 
 #mainNav .navbar-nav .nav-item.active .nav-link {
+  color: #e6a756;
+}
+
+.nav-link {
+  color: rgba(17, 9, 3, 1);
+}
+.nav-link:hover {
   color: #e6a756;
 }
 
