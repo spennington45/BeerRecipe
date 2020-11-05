@@ -97,7 +97,7 @@ import recipeService from "../services/RecipeService.js";
 export default {
   data() {
     return {
-      recipe: {userId: 1},
+      recipe: {userId: this.$store.state.user.id},
     };
   },
   methods: {

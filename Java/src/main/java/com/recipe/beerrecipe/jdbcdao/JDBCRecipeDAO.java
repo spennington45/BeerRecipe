@@ -74,6 +74,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		recipe.setDirections(sql.getString("directions"));
 		recipe.setAuthor(sql.getString("author"));
 		recipe.setUnits(sql.getString("units"));
+		recipe.setUserId(sql.getInt("user_id"));
 		return recipe;
 	}
 

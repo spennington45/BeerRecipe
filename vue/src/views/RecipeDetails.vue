@@ -16,8 +16,8 @@
                 <p>Directions:
                     {{this.recipe.directions}}
                 </p>
-                <button v-on:click="updateRecipe" class="btn btn-primary btn-sm">Update Recipe</button>
-                <button v-on:click="deleteRecipe" id="delete-btn" class="btn btn-danger btn-sm">Delete Recipe</button>
+                <button v-if="this.recipe.userId == this.$store.state.user.id || isAdmin()" v-on:click="updateRecipe" class="btn btn-primary btn-sm">Update Recipe</button>
+                <button v-if="isAdmin()" v-on:click="deleteRecipe" id="delete-btn" class="btn btn-danger btn-sm">Delete Recipe</button>
               </div>
             </div>
           </div>
@@ -36,6 +36,16 @@ export default {
     };
   },
   methods: {
+    // Checks if the usre is logged in and is they are ad admin
+    isAdmin() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name === "ROLE_ADMIN") {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
     updateRecipe() {
       this.$router.push({name: "updateRecipe", params: { id: this.$route.params.id }});
     },
