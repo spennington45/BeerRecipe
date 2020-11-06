@@ -60,6 +60,14 @@
                   v-model="user.lastName"
                   required
                 />
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="Email Address"
+                  v-model="user.email"
+                  required
+                />
                 <br />
                 <router-link :to="{ name: 'login' }" class="nav-link"
                   >Have an account?</router-link

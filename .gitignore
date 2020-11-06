@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+Java/src/main/java/com/recipe/beerrecipe/sendEmail/
 
 ### STS ###
 .apt_generated

@@ -18,12 +18,14 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-	name varchar,
+	first_name varchar,
+	last_name varchar,
+	email varchar,
 	CONSTRAINT PK_user PRIMARY KEY (id)
 );
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role, first_name, last_name, email) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'User', 'Userrrr', 'contact.beer.recipe@gmail.com');
+INSERT INTO users (username,password_hash,role, first_name, last_name, email) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN', 'Admin', 'AAdmin', 'contact.beer.recipe@gmail.com');
 
 CREATE TABLE beerRecipe (
   id serial,
@@ -78,3 +80,6 @@ CREATE TABLE favorites (
 );
 
 COMMIT TRANSACTION;
+
+SELECT * FROM users;
+SELECT * FROM beerrecipe;

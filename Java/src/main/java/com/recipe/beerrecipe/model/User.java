@@ -13,6 +13,7 @@ public class User {
 	private String username;
 	private String firstName;
 	private String lastName;
+	private String email;
 
 	@JsonIgnore
 	private String password;
@@ -28,6 +29,14 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.activated = true;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getFirstName() {

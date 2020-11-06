@@ -68,11 +68,11 @@ public class UserSqlDAO implements UserDAO {
 
 	// add new user to database
 	@Override
-	public boolean create(String username, String password, String role, String firstName, String lastName) {
+	public boolean create(String username, String password, String role, String firstName, String lastName, String email) {
 		boolean userCreated = false;
 
 		// create user
-		String insertUser = "insert into users (username,password_hash,role, first_name, last_name) values(?,?,?,?,?)";
+		String insertUser = "insert into users (username,password_hash,role, first_name, last_name, email) values(?,?,?,?,?,?)";
 		String password_hash = new BCryptPasswordEncoder().encode(password);
 		String ssRole = "ROLE_" + role.toUpperCase();
 
@@ -85,6 +85,7 @@ public class UserSqlDAO implements UserDAO {
 			ps.setString(3, ssRole);
 			ps.setString(4, firstName);
 			ps.setString(5, lastName);
+			ps.setString(6, email);
 			return ps;
 		}, keyHolder) == 1;
 		int newUserId = (int) keyHolder.getKeys().get(id_column);
@@ -96,6 +97,12 @@ public class UserSqlDAO implements UserDAO {
 	public void deleteUserById(long id) {
 		jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
 	}
+	
+	@Override
+	public String getUserEmailById(long id) {
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT email FROM users WHERE id = ?", id);
+		return results.getString("email");
+	}
 
 	// maps data to object by using database column name in table users
 	private User mapRowToUser(SqlRowSet rs) {
@@ -104,11 +111,13 @@ public class UserSqlDAO implements UserDAO {
 		user.setUsername(rs.getString("username"));
 		user.setFirstName(rs.getString("first_name"));
 		user.setLastName(rs.getString("last_name"));
+		user.setEmail(rs.getString("email"));
 		user.setPassword(rs.getString("password_hash"));
 		user.setAuthorities(rs.getString("role"));
 		user.setActivated(true);
 		return user;
 	}
+
 
 
 }
