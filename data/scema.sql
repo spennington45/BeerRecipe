@@ -51,12 +51,15 @@ CREATE TABLE post (
         title varchar,
         message varchar,
         reviewImgUrl varchar,
-        reviewDate date,
+        postDate date,
         user_id int,
+        stickied boolean,
 
         constraint pk_post primary key (id),
         constraint fk_user foreign key (user_id) references users (id)
 );
+
+INSERT INTO post (title, message, reviewimgurl, postdate, user_id, stickied) VALUES ('Welcome', 'Welcome to the Beer Recipe Forums.  Please feel free to add any topic you would like to discuss and respond to any as well.  Please also be polite to other members of our community.', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/welcome-design-template-9aa14ff9ecf8f172a9ff8dcedcae9657_screen.jpg?ts=1567076070', '10/6/2020', 2, true);
 
 CREATE TABLE reply_post (
         id serial,
@@ -70,6 +73,9 @@ CREATE TABLE reply_post (
         CONSTRAINT fk_post foreign key (post_id) references post (id)
 );
 
+INSERT INTO reply_post (user_id, post_id, title, reply) VALUES (1, 1, 'Thanks', 'It is good to be here');
+
+
 CREATE TABLE favorites (
         user_id int NOT NULL, 
         recipe_id int NOT NULL,
@@ -78,6 +84,8 @@ CREATE TABLE favorites (
         constraint fk_user foreign key (user_id) references users (id),
         CONSTRAINT fk_beerRecipe FOREIGN KEY (recipe_id) references beerRecipe (id)
 );
+
+INSERT INTO favorites (user_id, recipe_id) VALUES (1, 1);
 
 COMMIT TRANSACTION;
 
