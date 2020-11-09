@@ -1,6 +1,6 @@
 package com.recipe.beerrecipe.model;
 
-public class favorites {
+public class Favorites {
 
 	private int userId;
 	private int recipeId;

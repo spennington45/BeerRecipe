@@ -15,7 +15,7 @@ import com.recipe.beerrecipe.model.Recipe;
 
 @CrossOrigin
 @RestController 
-public class MainController {
+public class RecipeController {
 
 	@Autowired
 	JDBCRecipeDAO dao;
