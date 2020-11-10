@@ -44,6 +44,7 @@ public class JDBCPostDAO implements PostDAO {
 
 	@Override
 	public void deletePost(long id) {
+		jdbcTemplate.update("DELETE FROM reply_post WHERE post_id = ?", id);
 		jdbcTemplate.update("DELETE FROM post WHERE id = ?", id);
 	}
 
