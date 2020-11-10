@@ -19,7 +19,8 @@ public class JDBCPostDAO implements PostDAO {
 	@Override
 	public List<Post> getAllPost() {
 		List<Post> output = new ArrayList<Post>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM post");
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT post.*, users.username FROM post " + 
+				"JOIN users ON post.user_id = users.id");
 		while (results.next()) {
 			output.add(mapRowToPost(results));
 		}
@@ -28,7 +29,8 @@ public class JDBCPostDAO implements PostDAO {
 
 	@Override
 	public Post getPostById(long id) {
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM post WHERE id = ?", id);
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT post.*, users.username FROM post " + 
+				"JOIN users ON post.user_id = users.id; WHERE post.id = ?", id);
 		return mapRowToPost(results);
 	}
 

@@ -19,7 +19,8 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 	@Override
 	public List<PostReply> getReplysByPostId(long id) {
 		List<PostReply> output = new ArrayList<PostReply>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM reply_post WHERE post_id = ?", id);
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT reply_post.*, users.username FROM reply_post " + 
+				"JOIN users ON reply_post.user_id = users.id WHERE post_id = ?", id);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
 		}
