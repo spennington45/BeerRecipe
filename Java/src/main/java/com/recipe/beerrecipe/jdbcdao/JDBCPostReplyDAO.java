@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.recipe.beerrecipe.model.PostReply;
 
+@Component
 public class JDBCPostReplyDAO implements PostReplyDAO {
 
 	@Autowired
@@ -17,7 +19,7 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 	@Override
 	public List<PostReply> getReplysByPostId(long id) {
 		List<PostReply> output = new ArrayList<PostReply>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM reply_post WHERE id = ?", id);
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM reply_post WHERE post_id = ?", id);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
 		}

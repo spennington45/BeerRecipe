@@ -59,6 +59,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 	@Override
 	public String delete(long id) {
+		template.update("DELETE FROM favorites WHERE recipe_id = ?", id);
 		String sql = "DELETE FROM beerrecipe WHERE id = ?";
 		template.update(sql, id);
 		return "Deleted " + id;

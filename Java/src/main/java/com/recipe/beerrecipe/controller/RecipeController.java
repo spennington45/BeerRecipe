@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.recipe.beerrecipe.jdbcdao.JDBCFavoriteDAO;
 import com.recipe.beerrecipe.jdbcdao.JDBCRecipeDAO;
+import com.recipe.beerrecipe.model.Favorites;
 import com.recipe.beerrecipe.model.Recipe;
 
 @CrossOrigin
@@ -18,33 +20,50 @@ import com.recipe.beerrecipe.model.Recipe;
 public class RecipeController {
 
 	@Autowired
-	JDBCRecipeDAO dao;
+	JDBCRecipeDAO recipeDao;
+	@Autowired
+	JDBCFavoriteDAO favoriteDao;
 	
 	@RequestMapping(path = "/recipe", method = RequestMethod.GET)
 	public List <Recipe> getAll() {
-		List <Recipe> output = dao.getAll();
+		List <Recipe> output = recipeDao.getAll();
 		return output;
 	}
 	
 	@RequestMapping(path = "/recipe/{id}", method = RequestMethod.GET)
 	public Recipe getRecipeById(@PathVariable long id) {
-		Recipe output = dao.getRecipe(id);
+		Recipe output = recipeDao.getRecipe(id);
 		return output;
 	}
 	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody Recipe recipe) {
-		return dao.save(recipe);
+		return recipeDao.save(recipe);
 	}
 	
 	@RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
-		return dao.update(id, recipe);
+		return recipeDao.update(id, recipe);
 	}
 	
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable long id) {
-		return dao.delete(id);
+		return recipeDao.delete(id);
+	}
+	
+	@RequestMapping(path = "/favorite", method = RequestMethod.POST)
+	public void favorite(int userId, int recipeId) {
+		favoriteDao.favorite(userId, recipeId);
+	}
+	
+	@RequestMapping(path = "/unfavorite", method = RequestMethod.DELETE)
+	public void unfavorite(int userId, int recipeId) {
+		favoriteDao.unfavorite(userId, recipeId);
+	}
+	
+	@RequestMapping(path = "/favorite", method = RequestMethod.GET)
+	public List<Favorites> getFavoriteByUserId(int userId) {
+		return favoriteDao.getFavoriteByUserId(userId);
 	}
 	
 }
