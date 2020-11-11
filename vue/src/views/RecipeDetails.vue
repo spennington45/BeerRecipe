@@ -16,7 +16,7 @@
                 <p>Directions:
                     {{this.recipe.directions}}
                 </p>
-                <button v-if="this.recipe.userId == this.$store.state.user.id || isAdmin()" v-on:click="updateRecipe" class="btn btn-primary btn-sm">Update Recipe</button>
+                <button v-if="(this.recipe.userId == this.$store.state.user.id || isAdmin()) && this.$store.state.logIn" v-on:click="updateRecipe" class="btn btn-primary btn-sm">Update Recipe</button>
                 <button v-if="isAdmin()" v-on:click="deleteRecipe" id="delete-btn" class="btn btn-danger btn-sm">Delete Recipe</button>
               </div>
             </div>

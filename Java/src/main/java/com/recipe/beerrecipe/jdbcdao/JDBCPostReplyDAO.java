@@ -51,6 +51,7 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 		reply.setPostId(results.getInt("post_id"));
 		reply.setTitle(results.getString("title"));
 		reply.setReply(results.getString("reply"));
+		reply.setUsername(results.getString("username"));
 		return reply;
 	}
 }

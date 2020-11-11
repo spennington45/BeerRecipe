@@ -71,6 +71,7 @@ public class JDBCPostDAO implements PostDAO {
 		post.setDate(results.getDate("postDate"));
 		post.setUserId(results.getInt("user_id"));
 		post.setStickied(results.getBoolean("stickied"));
+		post.setUsername(results.getString("username"));
 		return post;
 	}
 	

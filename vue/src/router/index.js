@@ -10,7 +10,7 @@ import UpdateRecipe from "../views/UpdateRecipe.vue"
 import Login from "../views/Login.vue"
 import Logout from "../views/Logout.vue"
 import Register from "../views/Register.vue"
-
+import PostDetails from "../components/PostDetails.vue"
 
 Vue.use(Router)
 
@@ -95,6 +95,14 @@ const router = new Router({
             path: "/updateRecipe/:id",
             name: "updateRecipe",
             component: UpdateRecipe,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/post/:id",
+            name: "postDetails",
+            component: PostDetails,
             meta: {
                 requiresAuth: false
             }

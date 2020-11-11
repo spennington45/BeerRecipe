@@ -60,6 +60,8 @@ CREATE TABLE post (
 );
 
 INSERT INTO post (title, message, imgurl, postdate, user_id, stickied) VALUES ('Welcome', 'Welcome to the Beer Recipe Forums.  Please feel free to add any topic you would like to discuss and respond to any as well.  Please also be polite to other members of our community.', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/welcome-design-template-9aa14ff9ecf8f172a9ff8dcedcae9657_screen.jpg?ts=1567076070', '10/6/2020', 2, true);
+INSERT INTO post (title, message, imgurl, postdate, user_id, stickied) VALUES ('Test', 'Welcome to the Beer Recipe Forums.  Please feel free to add any topic you would like to discuss and respond to any as well.  Please also be polite to other members of our community.', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/welcome-design-template-9aa14ff9ecf8f172a9ff8dcedcae9657_screen.jpg?ts=1567076070', '10/6/2020', 1, false);
+
 
 CREATE TABLE reply_post (
         id serial,
