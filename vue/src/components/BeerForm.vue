@@ -1,7 +1,7 @@
 <template>
   <div>
-    <form>
-      <div class="flex-grow-1">
+    <form class="flex-grow-1">
+      <div>
         <label for="name">Name</label>
         <input
           type="text"

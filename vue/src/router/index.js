@@ -11,6 +11,8 @@ import Login from "../views/Login.vue"
 import Logout from "../views/Logout.vue"
 import Register from "../views/Register.vue"
 import PostDetails from "../components/PostDetails.vue"
+import PostForm from "../components/PostForm.vue"
+
 
 Vue.use(Router)
 
@@ -105,6 +107,22 @@ const router = new Router({
             component: PostDetails,
             meta: {
                 requiresAuth: false
+            }
+        },
+        {
+            path: "/postForm",
+            name: "postForm",
+            component: PostForm,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/postForm/:id",
+            name: "updatePost",
+            component: PostForm,
+            meta: {
+                requiresAuth: true
             }
         }
     ]

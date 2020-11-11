@@ -12,4 +12,16 @@ export default {
     unsticky(id) {
         return http.delete(`/sticky/${id}`)
     },
+    addPost(post) {
+        return http.post("/post", post)
+    },
+    getPostById(id) {
+        return http.get(`/post/${id}`)
+    },
+    updatePost(post) {
+        return http.put("/post", post)
+    },
+    deletePost(id) {
+        return http.delete(`/post/${id}`)
+    }
 }

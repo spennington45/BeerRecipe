@@ -20,7 +20,7 @@ public class JDBCPostDAO implements PostDAO {
 	public List<Post> getAllPost() {
 		List<Post> output = new ArrayList<Post>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT post.*, users.username FROM post " + 
-				"JOIN users ON post.user_id = users.id");
+				"JOIN users ON post.user_id = users.id ORDER BY postdate DESC");
 		while (results.next()) {
 			output.add(mapRowToPost(results));
 		}
@@ -30,13 +30,17 @@ public class JDBCPostDAO implements PostDAO {
 	@Override
 	public Post getPostById(long id) {
 		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT post.*, users.username FROM post " + 
-				"JOIN users ON post.user_id = users.id; WHERE post.id = ?", id);
-		return mapRowToPost(results);
+				"JOIN users ON post.user_id = users.id WHERE post.id = ?", id);
+		if (results.next()) {
+			return mapRowToPost(results);			
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public void updatePost(Post post) {
-		jdbcTemplate.update("UPDATE post title = ?, message = ?, imgurl = ?, postdate = ?, WHERE id = ?", 
+		jdbcTemplate.update("UPDATE post SET title = ?, message = ?, imgurl = ?, postdate = ? WHERE id = ?", 
 				post.getTitle(), post.getMessage(), post.getImageUrl(), post.getDate(), post.getId());
 	}
 

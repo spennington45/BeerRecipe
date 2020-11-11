@@ -175,7 +175,11 @@ export default {
       }
     },
     newPost() {
-      this.$router.push({name: "newPost"})
+      if (this.$store.state.logIn) {
+        this.$router.push({name: "postForm"})
+      } else {
+        this.$router.push({name: "login"})
+      }
     },
   },
 };
