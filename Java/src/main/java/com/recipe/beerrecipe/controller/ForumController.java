@@ -59,12 +59,17 @@ public class ForumController {
 		postDao.unsticky(id);
 	}
 	
-	@RequestMapping(path = "/reply/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "/reply/post/{id}", method = RequestMethod.GET)
 	public List<PostReply> getReplyByPostId(@PathVariable long id) {
 		return replyDao.getReplysByPostId(id);
 	}
 	
-	@RequestMapping(path = "/rpely", method = RequestMethod.POST)
+	@RequestMapping(path = "/reply/{id}", method = RequestMethod.GET)
+	public PostReply getReplyById(@PathVariable long id) {
+		return replyDao.getReplyById(id);
+	}
+	
+	@RequestMapping(path = "/reply", method = RequestMethod.POST)
 	public void addReply(@RequestBody PostReply reply) {
 		replyDao.addPostReply(reply);
 	}

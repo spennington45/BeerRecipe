@@ -12,8 +12,8 @@
                     type="text"
                     class="form-control"
                     id="title"
-                    placeholder="Enter post title"
-                    v-model="post.title"
+                    placeholder="Enter reply title"
+                    v-model="reply.title"
                   />
                 </div>
                 <div>
@@ -23,38 +23,28 @@
                     id="message"
                     rows="5"
                     placeholder="Message text"
-                    v-model="post.message"
+                    v-model="reply.reply"
                   ></textarea>
-                </div>
-                <div class="d-flex-inline">
-                  <label for="image">Image URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="image"
-                    placeholder="Enter image URL"
-                    v-model="post.imageUrl"
-                  />
                 </div>
                 <div>
                   <br />
                   <button
                     v-if="this.$route.params.id == null"
-                    id="addPost"
+                    id="addReply"
                     type="submit"
                     class="btn btn-primary btn-sm"
-                    v-on:click.prevent="newPost"
+                    v-on:click.prevent="newReply"
                   >
-                    Add Post
+                    Add Reply
                   </button>
                   <button
                     v-else
-                    id="updatePost"
+                    id="updateReply"
                     type="submin"
                     class="btn btn-primary btn-sm"
-                    v-on:click.prevent="updatePost"
+                    v-on:click.prevent="updateReply"
                   >
-                    Update Post
+                    Update Reply
                   </button>
                 </div>
               </form>
@@ -71,29 +61,29 @@ import forumService from "../services/ForumService.js";
 export default {
   data() {
     return {
-      post: {
+      reply: {
         userId: this.$store.state.user.id,
-        stickied: false,
+        postId: this.$route.params.postId,
       },
     };
   },
   methods: {
-    newPost() {
-      this.post.date = new Date();
-      forumService.addPost(this.post).then(() => {
-        this.$router.push({ name: "forums" });
+    newReply() {
+      this.reply.date = new Date();
+      forumService.addReply(this.reply).then(() => {
+        this.$router.push({ name: "postDetails", params: {id: this.reply.postId} });
       });
     },
-    updatePost() {
-      forumService.updatePost(this.post).then(() => {
-        this.$router.push({name: "postDetails", params: {id: this.$route.params.id}})
+    updateReply() {
+      forumService.updateReply(this.reply).then(() => {
+        this.$router.push({name: "postDetails", params: {id: this.reply.postId}})
       })
     }
   },
   created() {
     if (this.$route.params.id != null) {
-      forumService.getPostById(this.$route.params.id).then((response) => {
-        this.post = response.data;
+      forumService.getReplyById(this.$route.params.id).then((response) => {
+        this.reply = response.data;
       });
     }
   },

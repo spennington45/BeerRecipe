@@ -69,13 +69,14 @@ CREATE TABLE reply_post (
         post_id int not null,
         title varchar,
         reply varchar,
+        replyDate date,
 
 	CONSTRAINT PK_reply_post PRIMARY KEY (id),
         CONSTRAINT fk_users foreign key (user_id) references users (id),
         CONSTRAINT fk_post foreign key (post_id) references post (id)
 );
 
-INSERT INTO reply_post (user_id, post_id, title, reply) VALUES (1, 1, 'Thanks', 'It is good to be here');
+INSERT INTO reply_post (user_id, post_id, title, reply, replyDate) VALUES (1, 1, 'Thanks', 'It is good to be here', '2020-10-15');
 
 
 CREATE TABLE favorites (
@@ -96,8 +97,17 @@ SELECT * FROM beerrecipe;
 SELECT * FROM reply_post;
 
 SELECT post.*, users.username FROM post
-JOIN users ON post.user_id = users.id;
+JOIN users ON post.user_id = users.id ORDER BY postdate DESC;
+
+SELECT post.*, users.username FROM post
+JOIN users ON post.user_id = users.id WHERE post.id = 1;
 
 SELECT reply_post.*, users.username FROM reply_post
-JOIN users ON reply_post.user_id = users.id WHERE post_id = 1;
-;
+JOIN users ON reply_post.user_id = users.id WHERE post_id = 1 ORDER BY replyDate;
+
+SELECT * FROM post;
+
+SELECT post.*, users.username FROM post
+JOIN users ON post.user_id = users.id WHERE post.id = 1;
+
+SELECT * FROM reply_post;

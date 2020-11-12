@@ -29,14 +29,14 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 
 	@Override
 	public void updatePostReply(PostReply reply) {
-		jdbcTemplate.update("UPDATE reply_post SET title = ?, reply = ? WHERE id = ?",
+		jdbcTemplate.update("UPDATE reply_post SET title = ?, reply = ? WHERE id = ? ORDER BY replyDate",
 				reply.getTitle(), reply.getReply(), reply.getId());
 	}
 
 	@Override
 	public void addPostReply(PostReply reply) {
-		jdbcTemplate.update("INSERT INTO reply_post (user_id, post_id, title, reply) VALUES (?, ?, ?, ?)", 
-				reply.getUserId(), reply.getPostId(), reply.getTitle(), reply.getReply());
+		jdbcTemplate.update("INSERT INTO reply_post (user_id, post_id, title, reply, replyDate) VALUES (?, ?, ?, ?, ?)", 
+				reply.getUserId(), reply.getPostId(), reply.getTitle(), reply.getReply(), reply.getDate());
 	}
 
 	@Override
@@ -44,6 +44,17 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 		jdbcTemplate.update("DELETE FROM reply_post WHERE id = ?", id);
 	}
 
+	@Override
+	public PostReply getReplyById(long id) {
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT reply_post.*, users.username FROM reply_post " + 
+				"JOIN users ON reply_post.user_id = users.id WHERE reply_post.id = ?", id);
+		if (results.next()) {
+			return (mapRowToReply(results));
+		} else {
+			return null;			
+		}
+	}
+	
 	public PostReply mapRowToReply(SqlRowSet results) {
 		PostReply reply = new PostReply();
 		reply.setId(results.getLong("id"));
@@ -52,6 +63,8 @@ public class JDBCPostReplyDAO implements PostReplyDAO {
 		reply.setTitle(results.getString("title"));
 		reply.setReply(results.getString("reply"));
 		reply.setUsername(results.getString("username"));
+		reply.setDate(results.getDate("replyDate"));
 		return reply;
 	}
+
 }

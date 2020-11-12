@@ -13,10 +13,36 @@
                 <div class="postImage">
                   <img v-bind:src="post.imageUrl" alt="" />
                 </div>
-                <button v-if="(this.post.userId == this.$store.state.user.id || isAdmin()) && this.$store.state.logIn" class="margin-side btn btn-primary" v-on:click="updatePost">Update Post</button>
-                <button v-if="(this.post.userId == this.$store.state.user.id || isAdmin()) && this.$store.state.logIn" class="btn btn-danger" v-on:click="deletePost">Delete Post</button>
+                <button
+                  v-if="
+                    (this.post.userId == this.$store.state.user.id ||
+                      isAdmin()) &&
+                    this.$store.state.logIn
+                  "
+                  class="margin-side btn btn-primary"
+                  v-on:click="updatePost"
+                >
+                  Update Post
+                </button>
+                <button
+                  v-if="
+                    (this.post.userId == this.$store.state.user.id ||
+                      isAdmin()) &&
+                    this.$store.state.logIn
+                  "
+                  class="btn btn-danger"
+                  v-on:click="deletePost"
+                >
+                  Delete Post
+                </button>
               </div>
-              <button id="reply" class="margin-side btn btn-primary">Reply</button>
+              <button
+                v-on:click="addReply"
+                id="reply"
+                class="margin-side btn btn-primary"
+              >
+                Reply
+              </button>
               <Reply />
             </div>
           </div>
@@ -28,7 +54,7 @@
 
 <script>
 import forumServices from "../services/ForumService.js";
-import Reply from "./Reply.vue"
+import Reply from "./Reply.vue";
 export default {
   data() {
     return {
@@ -36,7 +62,7 @@ export default {
     };
   },
   components: {
-    Reply
+    Reply,
   },
   created() {
     forumServices.getPostById(this.$route.params.id).then((response) => {
@@ -45,12 +71,15 @@ export default {
   },
   methods: {
     updatePost() {
-      this.$router.push({name: "updatePost", params: {id: this.$route.params.id}})
+      this.$router.push({
+        name: "updatePost",
+        params: { id: this.$route.params.id },
+      });
     },
     deletePost() {
       forumServices.deletePost(this.$route.params.id).then(() => {
-        this.$router.push({name: "forums"})
-      })
+        this.$router.push({ name: "forums" });
+      });
     },
     isAdmin() {
       if (this.$store.state.logIn) {
@@ -59,6 +88,16 @@ export default {
         }
       } else {
         return false;
+      }
+    },
+    addReply() {
+      if (this.$store.state.logIn) {
+        this.$router.push({
+          name: "addReply",
+          params: { postId: this.$route.params.id },
+        });
+      } else {
+        this.$router.push({ name: "login" });
       }
     },
   },

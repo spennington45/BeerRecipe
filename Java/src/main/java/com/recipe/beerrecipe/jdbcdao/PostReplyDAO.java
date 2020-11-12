@@ -14,4 +14,6 @@ public interface PostReplyDAO {
 	
 	public void deletePostReply(long id);
 	
+	public PostReply getReplyById(long id);
+	
 }

@@ -1,5 +1,7 @@
 package com.recipe.beerrecipe.model;
 
+import java.util.Date;
+
 public class PostReply {
 
 	private long id;
@@ -8,7 +10,14 @@ public class PostReply {
 	private String title;
 	private String reply;
 	private String username;
+	private Date date;
 	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public String getUsername() {
 		return username;
 	}

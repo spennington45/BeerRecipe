@@ -12,7 +12,7 @@ import Logout from "../views/Logout.vue"
 import Register from "../views/Register.vue"
 import PostDetails from "../components/PostDetails.vue"
 import PostForm from "../components/PostForm.vue"
-
+import ReplyForm from "../components/ReplyForm.vue"
 
 Vue.use(Router)
 
@@ -124,7 +124,23 @@ const router = new Router({
             meta: {
                 requiresAuth: true
             }
-        }
+        },
+        {
+            path: "/post/:postId/reply",
+            name: "addReply",
+            component: ReplyForm,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/post/:postId/reply/:id",
+            name: "updateReply",
+            component: ReplyForm,
+            meta: {
+                requiresAuth: true
+            }
+        },
     ]
 })
 

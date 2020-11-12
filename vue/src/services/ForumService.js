@@ -23,5 +23,20 @@ export default {
     },
     deletePost(id) {
         return http.delete(`/post/${id}`)
+    },
+    getReplyByPostId(id) {
+        return http.get(`/reply/post/${id}`)
+    },
+    addReply(reply) {
+        return http.post("/reply", reply)
+    },
+    updateReply(reply) {
+        return http.put("/reply", reply)
+    },
+    deleteReply(id) {
+        return http.delete(`/reply/${id}`)
+    },
+    getReplyById(id) {
+        return http.get(`/reply/${id}`)
     }
 }
