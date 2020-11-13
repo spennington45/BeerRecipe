@@ -29,7 +29,7 @@ public class JDBCFavoriteDAO implements FavoriteDAO {
 	@Override
 	public List<Favorites> getFavoriteByUserId(int userId) {
 		List<Favorites> output = new ArrayList<Favorites>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM facorites WHERE user_id = ?", userId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM favorites WHERE user_id = ?", userId);
 		while (results.next()) {
 			output.add(mapRowToFacorites(results));
 		}

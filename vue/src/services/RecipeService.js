@@ -18,5 +18,14 @@ export default {
     },
     deleteRecipe(id) {
         return http.delete(`/delete/${id}`)
+    },
+    getFavoriteByUserId(id) {
+        return http.get(`/favorite/${id}`)
+    },
+    favorite(favorite) {
+        return http.post("/favorite", favorite)
+    },
+    unfavorite(favorite) {
+        return http.put("/unfavorite", favorite)
     }
 }

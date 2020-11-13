@@ -29,6 +29,20 @@
                 <h3 class="section-heading mb-4">Beer Recipes</h3>
               </div>
               <div v-for="recipe in filteredList" v-bind:key="recipe.id">
+                <div id="stars">
+                <img
+                  v-on:click="markNotFacorite(recipe.id)"
+                  v-if="favoriteRecipe(recipe.id)"
+                  src="../resources/favorite-icon-.jpg"
+                  alt=""
+                />
+                <img
+                  v-on:click="markFavorite(recipe.id)"
+                  v-else
+                  src="../resources/notFavorite.png"
+                  alt=""
+                />
+                </div>
                 <router-link
                   class="nav-link"
                   v-bind:to="{
@@ -37,7 +51,7 @@
                   }"
                 >
                   {{ recipe.name }}
-                <span class="gap-left">- {{recipe.author}}</span>
+                  <span class="gap-left">- {{ recipe.author }}</span>
                 </router-link>
               </div>
             </div>
@@ -56,20 +70,58 @@ export default {
     return {
       recipes: [],
       filterText: "",
+      favorite: [],
+      newFavorite: {},
+      index: 0,
+      src: ["../resources/favorite-icon-.jpg", 
+      "../resources/notFavorite.png"],
     };
+  },
+  watch: {
+
   },
   computed: {
     filteredList() {
       return this.recipes.filter((recipe) => {
         return recipe.name.toLowerCase().includes(this.filterText.toLowerCase());
       });
+    },
+    toggleImg() {
+      return this.favoriteRecipe(this.recipe.id)
     }
   },
   methods: {
+    markFavorite(recipeId) {
+      this.newFavorite.recipeId = recipeId
+      this.newFavorite.userId = this.$store.state.user.id
+      recipeService.favorite(this.newFavorite).then(() => {this.reload()})
+    },
+    markNotFacorite(recipeId) {
+      this.newFavorite.recipeId = recipeId
+      this.newFavorite.userId = this.$store.state.user.id
+      recipeService.unfavorite(this.newFavorite).then(() => {this.reload()})
+    },
+    favoriteRecipe(recipeId) {
+      for (let i = 0; i < this.favorite.length; i++) {
+        if (this.favorite[i].recipeId == recipeId && this.favorite[i].userId == this.$store.state.user.id) {
+          return true;
+        }
+      }
+        return false;
+    },
+     reload() {
+      this.render = false;
+      this.$nextTick(() => {
+        this.render = true;
+      });
+    }
   },
   created() {
     recipeService.getAllRecipe().then((response) => {
       this.recipes = response.data;
+      recipeService.getFavoriteByUserId(this.$store.state.user.id).then((response) => {
+        this.favorite = response.data;
+      })
     });
   },
 };
@@ -78,5 +130,16 @@ export default {
 <style scoped>
 .gap-left {
   margin-left: 10px;
+}
+#stars {
+  float: left;
+  padding-right: 5px;
+}
+img {
+  max-height: 15px;
+  widows: auto;
+}
+img:hover {
+  cursor: pointer;
 }
 </style>

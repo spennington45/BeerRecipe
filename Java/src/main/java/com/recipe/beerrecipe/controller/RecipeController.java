@@ -52,18 +52,18 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(path = "/favorite", method = RequestMethod.POST)
-	public void favorite(int userId, int recipeId) {
-		favoriteDao.favorite(userId, recipeId);
+	public void favorite(@RequestBody Favorites favorite) {
+		favoriteDao.favorite(favorite.getUserId(), favorite.getRecipeId());
 	}
 	
-	@RequestMapping(path = "/unfavorite", method = RequestMethod.DELETE)
-	public void unfavorite(int userId, int recipeId) {
-		favoriteDao.unfavorite(userId, recipeId);
+	@RequestMapping(path = "/unfavorite", method = RequestMethod.PUT)
+	public void unfavorite(@RequestBody Favorites favorite) {
+		favoriteDao.unfavorite(favorite.getUserId(), favorite.getRecipeId());
 	}
 	
-	@RequestMapping(path = "/favorite", method = RequestMethod.GET)
-	public List<Favorites> getFavoriteByUserId(int userId) {
-		return favoriteDao.getFavoriteByUserId(userId);
+	@RequestMapping(path = "/favorite/{id}", method = RequestMethod.GET)
+	public List<Favorites> getFavoriteByUserId(@PathVariable int id) {
+		return favoriteDao.getFavoriteByUserId(id);
 	}
 	
 }
